@@ -1,0 +1,5 @@
+cohort,n,d,pct_miss,patterns,largest_block,largest_block_pct
+Colorectal,40000,188,51.15,6949,1098,2.75
+Lung,40000,121,27.56,4585,1144,2.86
+Ovarian,40000,116,12.51,4608,2035,5.09
+Prostate,40000,91,14.37,3472,2180,5.45

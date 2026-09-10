@@ -1,0 +1,5 @@
+cohort,feature_set,subsample_n,no_match_rate
+prostate,baseline,1500,0.0
+lung,baseline,40000,0.0
+ovarian,baseline,40000,0.0
+colorectal,baseline,40000,0.0

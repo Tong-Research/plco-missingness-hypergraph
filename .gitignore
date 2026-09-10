@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+VERIFY.log
+# decompressed copies of the shipped .csv.gz files (made by reproduce.sh)
+results/FULL-lung/ancestor_bias.csv
+results/FULL-ovarian/ancestor_bias.csv
+results/kappa-colorectal/ancestor_bias.csv
+results/rebuild-ovarian/ancestor_bias.csv

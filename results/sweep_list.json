@@ -1,0 +1,106 @@
+[
+ {
+  "name": "federal_election",
+  "did": 42080,
+  "n": 3348209,
+  "d": 21,
+  "miss": 0.15340933729331827,
+  "classes": 0
+ },
+ {
+  "name": "jigsaw-unintended-bias-in-toxicity",
+  "did": 46703,
+  "n": 1999516,
+  "d": 46,
+  "miss": 0.41424400791948174,
+  "classes": 0
+ },
+ {
+  "name": "la_crimes",
+  "did": 42136,
+  "n": 1598468,
+  "d": 26,
+  "miss": 0.21085665486241537,
+  "classes": 0
+ },
+ {
+  "name": "Crime_Data_from_2010",
+  "did": 46725,
+  "n": 1555986,
+  "d": 26,
+  "miss": 0.2064991636764776,
+  "classes": 0
+ },
+ {
+  "name": "public_procurement",
+  "did": 42093,
+  "n": 565163,
+  "d": 75,
+  "miss": 0.3644261920897157,
+  "classes": 0
+ },
+ {
+  "name": "fps-in-video-games",
+  "did": 42737,
+  "n": 425833,
+  "d": 45,
+  "miss": 0.06784026184495383,
+  "classes": 0
+ },
+ {
+  "name": "albert",
+  "did": 41147,
+  "n": 425240,
+  "d": 79,
+  "miss": 0.0813836773038963,
+  "classes": 2
+ },
+ {
+  "name": "road_safety",
+  "did": 42739,
+  "n": 363266,
+  "d": 66,
+  "miss": 0.09101461505209722,
+  "classes": 0
+ },
+ {
+  "name": "SoilHydroDB",
+  "did": 42333,
+  "n": 155649,
+  "d": 38,
+  "miss": 0.33333417869017706,
+  "classes": 0
+ },
+ {
+  "name": "methane_emissions_rice_crop",
+  "did": 46736,
+  "n": 138658,
+  "d": 17,
+  "miss": 0.058823529411764705,
+  "classes": 0
+ },
+ {
+  "name": "dgf_6af37c98-0933-4ae4-8380-5f63212fb52a",
+  "did": 43034,
+  "n": 132977,
+  "d": 55,
+  "miss": 0.07527221043693817,
+  "classes": 0
+ },
+ {
+  "name": "wine-reviews",
+  "did": 41275,
+  "n": 129971,
+  "d": 13,
+  "miss": 0.12118206250743509,
+  "classes": 0
+ },
+ {
+  "name": "jigsaw_unintended_bias100K",
+  "did": 46654,
+  "n": 100000,
+  "d": 45,
+  "miss": 0.42287844444444445,
+  "classes": 2
+ }
+]

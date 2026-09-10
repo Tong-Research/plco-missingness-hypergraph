@@ -1,0 +1,16 @@
+# =====================================================================
+# MOCK COHORT CHARACTERISTICS — INVENTED. NOT REAL PLCO STATISTICS.
+#
+# These are plausible-looking but fabricated. In particular n, d, pct_miss
+# and pct_pos are NOT the real PLCO arm sizes and must be replaced from the
+# actual extraction before anything is claimed about this trial.
+#
+# iota    : mask informativeness, AUROC(mask -> y) - 0.5   [Eq. maskinfo]
+# patterns: |E|, realised missingness patterns
+# fallback: Pr[cover set empty] -> marginal predictor fires
+# =====================================================================
+cohort,n,d,pct_miss,pct_pos,patterns,iota,iota_ci,fallback
+Colorectal,41238,34,31.2,8.4,58,0.187,0.011,0.008
+Lung,38942,29,27.8,12.1,47,0.142,0.010,0.021
+Ovarian,22517,41,35.6,6.9,61,0.231,0.015,0.004
+Prostate,35104,26,24.3,9.7,44,0.108,0.011,0.013

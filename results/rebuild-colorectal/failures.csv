@@ -1,0 +1,2 @@
+timestamp,stage,cohort,unit,feature_set,error
+2026-08-26T07:46:34,main,colorectal,mask_interaction,baseline,BrokenPipeError: [Errno 32] Broken pipe

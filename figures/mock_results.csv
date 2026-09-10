@@ -1,0 +1,35 @@
+# =====================================================================
+# MOCK RESULTS — INVENTED NUMBERS. NOT EXPERIMENTAL OUTPUT.
+#
+# Single source of truth for every number in the paper's figures and tables.
+#
+# TO GO LIVE: replace with real_results.csv from the run, set MOCK = False
+# in make_figures.py and make_tables.py, re-run both.
+#
+# The proposed method deliberately does NOT win everywhere. Ordered by mask
+# informativeness (Table 2):
+#   Ovarian    iota .231  -> clear win  (+.033 over SPSM)
+#   Colorectal iota .187  -> clear win  (+.024)
+#   Lung       iota .142  -> tie        (+.006, inside the CI)
+#   Prostate   iota .108  -> LOSS       (-.007; SPSM is best)
+# That ordering is the point: the method helps where the mask is informative
+# and stops helping where it is not, which is what iota is for.
+#
+# auprc : area under the precision-recall curve (primary metric)
+# auroc : area under the ROC curve
+# acc   : accuracy (%). Majority-class baselines: 91.6 / 87.9 / 93.1 / 90.3
+# ci    : half-width of the 95% CI on AUPRC over 10 seeds x 5-fold CV
+# =====================================================================
+family,method,colorectal,lung,ovarian,prostate,ci_colorectal,ci_lung,ci_ovarian,ci_prostate,acc_colorectal,acc_lung,acc_ovarian,acc_prostate,auroc_colorectal,auroc_lung,auroc_ovarian,auroc_prostate
+impute,Mean + GBDT,0.198,0.241,0.162,0.215,0.013,0.012,0.018,0.014,92.1,88.6,93.4,90.8,0.712,0.726,0.698,0.719
+impute,MICE + GBDT,0.223,0.264,0.181,0.236,0.014,0.013,0.019,0.015,92.4,89.0,93.6,91.1,0.728,0.741,0.713,0.734
+impute,MissForest + GBDT,0.238,0.278,0.195,0.249,0.014,0.013,0.019,0.015,92.6,89.3,93.7,91.3,0.737,0.750,0.722,0.743
+impute,HyperImpute + GBDT,0.251,0.294,0.209,0.262,0.014,0.013,0.019,0.015,92.8,89.6,93.9,91.5,0.745,0.758,0.731,0.751
+mask,Mean + indicator,0.244,0.286,0.201,0.255,0.014,0.013,0.019,0.015,92.7,89.4,93.8,91.4,0.741,0.754,0.726,0.747
+mask,Mean + indicator x features,0.262,0.303,0.218,0.271,0.014,0.013,0.020,0.015,93.0,89.8,94.0,91.7,0.753,0.765,0.739,0.758
+native,XGBoost,0.259,0.301,0.215,0.268,0.013,0.012,0.018,0.014,92.9,89.7,94.0,91.6,0.751,0.763,0.737,0.756
+native,LightGBM,0.257,0.299,0.213,0.266,0.013,0.012,0.018,0.014,92.9,89.7,93.9,91.6,0.750,0.762,0.736,0.755
+pattern,Pattern submodels,0.231,0.270,0.188,0.243,0.016,0.015,0.022,0.017,92.5,89.1,93.6,91.2,0.733,0.746,0.717,0.739
+pattern,Learn++.MF,0.254,0.295,0.209,0.261,0.014,0.013,0.019,0.015,92.8,89.6,93.9,91.5,0.747,0.759,0.731,0.753
+pattern,SPSM,0.274,0.312,0.238,0.276,0.014,0.013,0.019,0.015,93.1,89.9,94.1,91.8,0.759,0.771,0.749,0.762
+ours,Proposed method,0.298,0.318,0.271,0.269,0.014,0.013,0.019,0.015,93.3,90.1,94.4,91.7,0.772,0.776,0.767,0.760

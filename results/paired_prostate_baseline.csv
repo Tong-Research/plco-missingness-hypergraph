@@ -1,0 +1,8 @@
+method,median_diff,p_raw,n_pairs,n_dropped,p_holm,cohort,feature_set
+learnpp_mf,-0.059047403254935946,0.5,2,0,1.0,prostate,baseline
+lightgbm_native,-0.05628163198592834,0.5,2,0,1.0,prostate,baseline
+mean_impute,-0.04618497386331724,0.5,2,0,1.0,prostate,baseline
+refe,-0.06465247981675379,0.5,2,0,1.0,prostate,baseline
+xgboost_native,-0.02426845421737074,0.5,2,0,1.0,prostate,baseline
+mice_impute_lr,-0.026966534794095838,1.0,2,0,1.0,prostate,baseline
+refe_tree,-0.018418081168735494,1.0,2,0,1.0,prostate,baseline

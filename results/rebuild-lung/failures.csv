@@ -1,0 +1,3 @@
+timestamp,stage,cohort,unit,feature_set,error
+2026-08-24T19:23:25,main,lung,spsm_global,baseline,BrokenPipeError: [Errno 32] Broken pipe
+2026-08-25T23:23:28,diagnostics,lung,ancestor_discrepancy,baseline,BrokenPipeError: [Errno 32] Broken pipe
