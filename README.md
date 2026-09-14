@@ -2,7 +2,7 @@
 
 Code, pre-registrations, aggregate results and figures for the article of the same title
 (Vivatchai Kaveeta, Prompong Sugunnasil, Juggapong Natwichai, Chiang Mai University). Generated from the authors' research monorepo at
-commit `0e37efc` on 2026-09-14 by `build_release.py`; the generator's verification step imported the
+commit `79bdc6f` on 2026-09-14 by `build_release.py`; the generator's verification step imported the
 library and regenerated the tables and figures in this tree.
 
 ## Layout
@@ -11,7 +11,7 @@ library and regenerated the tables and figures in this tree.
 - `figures/` — the figure and table generators (run from inside `figures/`), the figures, and their aggregate inputs.
 - `results/` — aggregate outputs (per seed and fold, or per decision for public collections) that the tables are built from; files over 1 MB are gzip-compressed and `reproduce.sh` inflates them.
 - `figures/` — the figures as they appear in the article.
-- `prereg/` — the pre-registrations (predictions and withdrawal conditions written before each run).
+
 
 ## Reproduce the tables and figures from the shipped results
 ```
