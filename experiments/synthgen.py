@@ -161,7 +161,7 @@ def _pattern_masks(rng, d, n_patterns, n_blocks, sizes, target_miss=0.12):
 def make_dataset(
     n=4000, d=16, n_patterns=6, n_blocks=4, concentration=1.0,
     mechanism="MAR", het=1.0, info=1.0, prevalence=None, target_miss=0.12, seed=0,
-    outcome_from="pattern",
+    outcome_from="pattern", rho=None,
 ):
     """Generate (X_with_nan, y, meta).
 
@@ -176,6 +176,15 @@ def make_dataset(
                 in their populations but not in the conditional relationship between X and y.
                 The second is the control the oracle-bound paper proposes in its Section on
                 simulation practice and records as not having run.
+
+                Two further settings (GENDESIGN, prereg/GENDESIGN.md) turn that binary control
+                into a dose. 'mix' uses beta0 + rho*(betas[k] - beta0) to draw the outcome, so
+                rho is the FRACTION of the realised coefficient divergence that is allowed to
+                generate the label; rho=0 reproduces 'shared' and rho=1 reproduces 'pattern',
+                while the divergence itself is untouched at every rho. 'shared_flat' is 'shared'
+                with the per-pattern intercept dropped too, which isolates whether differing
+                base rates alone can manufacture a gain.
+    rho: required by outcome_from='mix', ignored otherwise.
     """
     rng = np.random.default_rng(seed)
     X = _latent_features(rng, n, d)
@@ -223,8 +232,16 @@ def make_dataset(
         lin = np.array([inters[assign[i]] + X[i] @ beta0 for i in range(n)])
     elif outcome_from == "pattern":
         lin = np.array([inters[assign[i]] + X[i] @ betas[assign[i]] for i in range(n)])
+    elif outcome_from == "shared_flat":
+        lin = np.array([X[i] @ beta0 for i in range(n)])
+    elif outcome_from == "mix":
+        if rho is None:
+            raise ValueError("outcome_from='mix' requires rho")
+        eff = {k: beta0 + float(rho) * (betas[k] - beta0) for k in betas}
+        lin = np.array([inters[assign[i]] + X[i] @ eff[assign[i]] for i in range(n)])
     else:
-        raise ValueError(f"outcome_from must be 'pattern' or 'shared', got {outcome_from!r}")
+        raise ValueError("outcome_from must be 'pattern', 'shared', 'shared_flat' or 'mix', "
+                         f"got {outcome_from!r}")
     if prevalence is not None:                     # shift intercept to hit the rate
         lo, hi = -20.0, 20.0
         for _ in range(60):

@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import itertools
+import platform
 import os
 import sys
 import time
@@ -158,6 +159,9 @@ def evaluate(X, y, seeds, min_support, rule="1se"):
     return pd.DataFrame(rows)
 
 
+PLATFORM = f"{platform.system()}-{platform.machine()}"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true")
@@ -167,7 +171,10 @@ def main():
     ap.add_argument("--rule", choices=["1se", "argmax"], default="1se",
                     help="kappa selection: conservative one-standard-error, or plain inner-CV argmax")
     ap.add_argument("--mechanism", default="", help="run only this mechanism; empty runs all three")
-    ap.add_argument("--outcome-from", choices=["pattern", "shared"], default="pattern",
+    ap.add_argument("--rho", type=float, default=None,
+                    help="GENDESIGN: fraction of the realised coefficient divergence allowed to "
+                         "generate the label; requires --outcome-from mix")
+    ap.add_argument("--outcome-from", choices=["pattern", "shared", "mix", "shared_flat"], default="pattern",
                     help="'pattern' is the standard generator, which draws the outcome from each "
                          "row's own pattern coefficients and therefore makes coefficient divergence "
                          "predictive by construction. 'shared' is the control the oracle-bound paper "
@@ -194,11 +201,15 @@ def main():
                                   mechanism=cfg["mechanism"], het=cfg["het"],
                                   info=cfg["info"], prevalence=0.10,
                                   target_miss=0.12, seed=0,
-                                  outcome_from=a.outcome_from)
+                                  outcome_from=a.outcome_from, rho=a.rho)
         st = dataset_stats(X, y)
         t = time.time()
         df = evaluate(X, y, seeds, a.min_support, a.rule)
-        rec = {**cfg, "outcome_from": a.outcome_from, "coef_spread": meta["coef_spread"],
+        # Platform is recorded because it changes the numbers. results/simcontrol/ was assembled
+        # from per-mechanism jobs on different machines and nothing said so, which made a
+        # two-platform mean look like one measurement (Result 232 and its correction).
+        rec = {**cfg, "outcome_from": a.outcome_from, "rho": a.rho,
+               "platform": PLATFORM, "coef_spread": meta["coef_spread"],
                **{k: st[k] for k in ["miss", "n_pat", "cov30", "eff_pat", "prev"]}}
         for m in ["mean_impute", "mean_indicator", "tuned_impute", "tuned_indicator",
                   "safe_adaptive", "safe_oracle"]:
