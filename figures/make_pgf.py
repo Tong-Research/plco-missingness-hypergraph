@@ -332,8 +332,10 @@ def fig_hexc_lens():
                               gap="0.95cm", **opts)
         prev = f"p{i}"
 
-        for kind, style in (("null", "hggrey, only marks, mark=*, mark size=1.3pt, "
-                                     "mark options={draw=none, fill=hggrey, fill opacity=0.75}"),
+        # permuted mask as open circles: in greyscale print, fill level alone did not
+        # separate the two clouds where they overlap (2026-09-23)
+        for kind, style in (("null", "hggrey, only marks, mark=o, mark size=1.3pt, "
+                                     "mark options={draw=hggrey, line width=0.4pt}"),
                             ("real", "hgred, only marks, mark=*, mark size=1.3pt, "
                                      "mark options={draw=none, fill=hgred, fill opacity=0.85}")):
             gg = g[g.kind == kind]
@@ -351,7 +353,7 @@ def fig_hexc_lens():
     fig.raw("\\node[anchor=north west, font=\\scriptsize, align=left, text=hgslate] "
             "at ($(p3.north east)+(2.6cm,0)$) "
             "{\\tikz{\\fill[hgred] (0,0) circle (1.6pt);}~real mask\\\\[3pt]"
-            "\\tikz{\\fill[hggrey] (0,0) circle (1.6pt);}~row-permuted mask\\\\[3pt]"
+            "\\tikz{\\draw[hggrey, line width=0.4pt] (0,0) circle (1.6pt);}~row-permuted mask\\\\[3pt]"
             "the rules are the support-weighted\\\\means, and $H_{\\mathrm{exc}}$ is "
             "their difference};")
     _write(fig, "hexc_lens")
