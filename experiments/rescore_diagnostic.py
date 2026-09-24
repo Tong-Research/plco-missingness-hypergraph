@@ -1,6 +1,6 @@
 """Result 168: the diagnostic validation re-scored against tuned mean imputation (referee point, 2026-09-03).
 
-The published AUC (0.757 for H_exc, 0.618 for iota) defines a win as a significant paired gain over the tuned
+The published AUC (tables/diagval_counts.tex, \DvAuc for H_exc and \DvIotaAuc for iota; 0.757 and 0.618 before SYNTHRERUN) defines a win as a significant paired gain over the tuned
 indicator model. MIMIC-IV's outcome was a gain over tuned imputation and a loss to the indicator, so the
 validation criterion and the credited prediction differed. This script scores both measures under the
 imputation criterion too, from the committed files results/synthetic_suite_1se.csv and
